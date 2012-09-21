@@ -1,4 +1,5 @@
 require "letters/patch"
+require "set"
 
 module Letters
   def self.object_for_diff=(object)
