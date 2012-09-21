@@ -9,24 +9,21 @@ module Letters
   def self.object_for_diff
     @@object if defined?(@@object)
   end
+
+  def self.patch!(klass)
+    klass.instance_eval do
+      include Letters::CoreExt
+    end
+  end
 end
 
-class Array
-  include Letters::CoreExt
-end
+# Letters.patch! Object
 
-class Hash
-  include Letters::CoreExt
-end
-
-class String
-  include Letters::CoreExt
-end
-
-class NilClass
-  include Letters::CoreExt
-end
-
-# class Object
-  # include Letters::CoreExt
-# end
+Letters.patch! Fixnum
+Letters.patch! String
+Letters.patch! Array
+Letters.patch! Range
+Letters.patch! Hash
+Letters.patch! NilClass
+Letters.patch! TrueClass
+Letters.patch! FalseClass
