@@ -18,7 +18,8 @@ module Letters
     def c(opts={})
       tap do
         $stdout.puts opts[:message] if opts[:message]
-        $stdout.puts caller
+        trace = caller.length > 2 ? caller.slice(2..-1) : []
+        $stdout.puts trace
       end
     end
 
