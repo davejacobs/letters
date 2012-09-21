@@ -1,5 +1,4 @@
-require "letters/helpers"
-require "letters/core_ext"
+require "letters/patch"
 
 module Letters
   def self.object_for_diff=(object)
@@ -9,15 +8,7 @@ module Letters
   def self.object_for_diff
     @@object if defined?(@@object)
   end
-
-  def self.patch!(klass)
-    klass.instance_eval do
-      include Letters::CoreExt
-    end
-  end
 end
-
-# Letters.patch! Object
 
 Letters.patch! Fixnum
 Letters.patch! String
