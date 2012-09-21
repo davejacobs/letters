@@ -93,18 +93,19 @@ module Letters
 
     # Print to STDOUT
     def p(opts={})
-      opts = { format: :ap }.merge opts
+      opts = { format: :ap, stream: $stdout }.merge opts
       tap do |o|
-        Helpers.out o, :stream => $stdout, :format => opts[:format]
+        Helpers.out o, opts
       end
     end
 
     # RI
-    def r(opts={})
+    def r(method=nil, opts={})
       require "rdoc/ri/driver"
       tap do |o|
         $stdout.puts opts[:message] if opts[:message]
-        system "ri #{o.class}" 
+        method_or_empty = method ? "##{method}" : method
+        system "ri #{o.class}#{method_or_empty}" 
       end
     end
 

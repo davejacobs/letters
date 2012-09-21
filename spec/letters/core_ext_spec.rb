@@ -158,9 +158,14 @@ module Letters
     end
 
     describe "#r (ri)" do
-      it "displays RI information, if available" do
+      it "displays RI information for the receiver's class, if available" do
         hash.should_receive(:system).with("ri Hash")
         hash.r
+      end
+
+      it "can narrow its scope to a single method" do
+        hash.should_receive(:system).with("ri Hash#new")
+        hash.r(:new)
       end
     end
 
