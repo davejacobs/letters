@@ -121,6 +121,14 @@ module Letters
         $stdout.should_receive(:puts).with("[warning] No logger available")
         hash.l
       end
+
+      it "logs the object if a logger is present and then returns the object" do
+        logger = double 'logger'
+        logger.should_receive(:info).never
+        logger.should_receive(:error).with(hash.to_yaml)
+        hash.should_receive(:logger).and_return(logger)
+        hash.l(:level => "error")
+      end
     end
 
     describe "#n (nil check)" do
