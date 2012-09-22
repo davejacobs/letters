@@ -155,6 +155,13 @@ module Letters
           hash.p(:format => :yaml)
         end
       end
+
+      describe "when a block is given" do
+        it "write the result of the block, executed in the object's context" do
+          $stdout.should_receive(:puts).with(hash.length.awesome_inspect)
+          hash.p { length }.should == hash
+        end
+      end
     end
 
     describe "#r (ri)" do

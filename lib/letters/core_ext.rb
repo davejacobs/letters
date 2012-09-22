@@ -92,10 +92,11 @@ module Letters
     end
 
     # Print to STDOUT
-    def p(opts={})
+    def p(opts={}, &block)
       opts = { format: :ap, stream: $stdout }.merge opts
       tap do |o|
-        Helpers.out o, opts
+        obj = block_given? ? o.instance_eval(&block) : o 
+        Helpers.out obj, opts
       end
     end
 
