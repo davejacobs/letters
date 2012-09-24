@@ -157,6 +157,21 @@ module Letters
       end
     end
 
+    describe "#m (mark object as tainted/untainted)" do
+      it "with no argument or `true`, marks the receiver as tainted" do
+        lambda do
+          hash.m
+        end.should change { hash.tainted? }.from(false).to(true)
+      end
+
+      it "when passed `false`, marks the receiver as untainted" do
+        hash.taint
+        lambda do
+          hash.m(false)
+        end.should change { hash.tainted? }.from(true).to(false)
+      end
+    end
+
     describe "#n (nil check)" do
       it "raises an error if the receiver is nil" do
         lambda { nil.n }.should raise_error(NilError)
@@ -219,23 +234,6 @@ module Letters
         lambda do
           hash.s(3)
         end.should raise_error
-      end
-    end
-
-    describe "#t (taint object)" do
-      it "marks the receiver as tainted" do
-        lambda do
-          hash.t
-        end.should change { hash.tainted? }.from(false).to(true)
-      end
-    end
-
-    describe "#u (taint object)" do
-      it "marks the receiver as tainted" do
-        hash.taint
-        lambda do
-          hash.u
-        end.should change { hash.tainted? }.from(true).to(false)
       end
     end
   end

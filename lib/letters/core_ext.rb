@@ -103,6 +103,17 @@ module Letters
       end
     end
 
+    # Taint and untaint object
+    def m(taint=true)
+      tap do |o|
+        if taint
+          o.taint
+        else
+          o.untaint
+        end
+      end
+    end
+
     # Nil check
     def n(opts={})
       tap do |o|
@@ -134,20 +145,6 @@ module Letters
       tap do
         level ||= $SAFE + 1
         Helpers.change_safety level
-      end
-    end
-
-    # Taint object
-    def t
-      tap do |o|
-        o.taint
-      end
-    end
-
-    # Untaint object
-    def u
-      tap do |o|
-        o.untaint
       end
     end
   end
