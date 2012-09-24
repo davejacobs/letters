@@ -147,5 +147,13 @@ module Letters
         Helpers.change_safety level
       end
     end
+
+    # Timestamp
+    def t(opts={})
+      tap do
+        Helpers.message opts
+        Helpers.out Time.now, opts
+      end
+    end
   end
 end

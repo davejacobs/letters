@@ -236,5 +236,24 @@ module Letters
         end.should raise_error
       end
     end
+
+    describe "#t (timestamp)" do
+      it "without :stream, prints the current time to STDOUT" do
+        time = Time.now
+        Timecop.freeze(time) do
+          $stdout.should_receive(:puts).with(time.to_s).twice
+          {}.t.select {|k,v| k =~ /foo/ }.t
+        end
+      end
+
+      it "can print to other I/O objects" do
+        time = Time.now
+        Timecop.freeze(time) do
+          io = double 'custom I/O object'
+          io.should_receive(:puts).with(time.to_s).twice
+          {}.t(:stream => io).select {|k,v| k =~ /foo/ }.t(:stream => io)
+        end
+      end
+    end
   end
 end
