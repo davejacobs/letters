@@ -20,9 +20,8 @@ module Letters
     end
 
     # Beep
-    def b(opts={})
+    def b
       tap do
-        Helpers.message opts
         $stdout.puts "\a"
       end
     end
@@ -32,24 +31,25 @@ module Letters
       tap do
         Helpers.message opts
         trace = caller.length > 2 ? caller.slice(2..-1) : []
-        Helpers.out trace
+        Helpers.out trace, opts
       end
     end
 
     # Debug
-    def d(opts={})
+    def d
       tap do
-        Helpers.message opts
         Helpers.call_debugger 
       end
     end
 
+    # Diff 1
     def d1
       tap do |o|
         Letters.object_for_diff = o
       end
     end
 
+    # Diff 2
     def d2(opts={})
       require "awesome_print"
       opts = { format: "ap" }.merge opts
@@ -73,7 +73,7 @@ module Letters
 
     # File
     def f(opts={})
-      opts = { name: "log", format: "yaml" }.merge opts
+      opts = { format: "yaml", name: "log" }.merge opts
       tap do |o|
         File.open(opts[:name], "w+") do |file|
           # Override :stream
@@ -117,8 +117,10 @@ module Letters
 
     # Nil check
     def n(opts={})
+      # Override :error_class
+      opts.merge! :error_class => NilError
       tap do |o|
-        o.a(:error_class => NilError) { !nil? } 
+        o.a(opts) { !nil? } 
       end
     end
 
@@ -134,7 +136,6 @@ module Letters
 
     # RI
     def r(method=nil)
-      require "rdoc/ri/driver"
       tap do |o|
         method_or_empty = method ? "##{method}" : method
         system "ri #{o.class}#{method_or_empty}" 
