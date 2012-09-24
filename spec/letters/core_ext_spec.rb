@@ -241,7 +241,7 @@ module Letters
       it "without :stream, prints the current time to STDOUT" do
         time = Time.now
         Timecop.freeze(time) do
-          $stdout.should_receive(:puts).with(time.to_s).twice
+          $stdout.should_receive(:puts).with(time.to_s(:millis)).twice
           {}.t.select {|k,v| k =~ /foo/ }.t
         end
       end
@@ -250,7 +250,7 @@ module Letters
         time = Time.now
         Timecop.freeze(time) do
           io = double 'custom I/O object'
-          io.should_receive(:puts).with(time.to_s).twice
+          io.should_receive(:puts).with(time.to_s(:millis)).twice
           {}.t(:stream => io).select {|k,v| k =~ /foo/ }.t(:stream => io)
         end
       end

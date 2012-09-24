@@ -2,6 +2,7 @@ require "letters/helpers"
 require "letters/assertion_error"
 require "letters/empty_error"
 require "letters/nil_error"
+require "letters/time_formats"
 
 module Letters
   module CoreExt
@@ -150,9 +151,10 @@ module Letters
 
     # Timestamp
     def t(opts={})
+      opts = { time_format: "millis" }.merge opts
       tap do
         Helpers.message opts
-        Helpers.out Time.now, opts
+        Helpers.out Time.now.to_s(opts[:time_format].to_sym), opts
       end
     end
   end
