@@ -30,7 +30,33 @@ module Letters
         hash.send(letter).should == hash
       end
 
+      # Methods that can take a block
       hash.j { nil }.should == hash
+      hash.p { nil }.should == hash
+    end
+
+    describe "#a (assert)" do
+      it "jumps into the receiver's calling context" do
+        lambda do
+          [1, 2, 3].a { count }
+        end.should_not raise_error
+      end
+
+      it "raises a Letters::AssertionError if the block returns false" do
+        lambda do
+          [1, 2, 3].a { count > 3 } 
+        end.should raise_error(Letters::AssertionError)
+      end
+
+      it "raises a Letters::AssertionError if the block returns nil" do
+        lambda do
+          [1, 2, 3].a { nil }
+        end.should raise_error(Letters::AssertionError)
+      end
+
+      it "does nothing if the block returns a truthy value" do
+        [1, 2, 3].a { count < 4 }.should == [1, 2, 3]
+      end
     end
 
     describe "#c (callstack)" do

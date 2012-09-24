@@ -1,10 +1,21 @@
 require "letters/helpers"
+require "letters/assertion_error"
 require "letters/empty_error"
 require "letters/nil_error"
 
 module Letters
   module CoreExt
     DELIM = '-' * 20
+
+    # Assert
+    def a(opts={}, &block)
+      opts = { error_class: AssertionError }.merge opts
+      tap do |o|
+        if block_given? && !o.instance_eval(&block)
+          raise opts[:error_class]
+        end
+      end
+    end
 
     # Beep
     def b(opts={})
@@ -50,7 +61,7 @@ module Letters
     # Empty check
     def e(opts={})
       tap do |o|
-        raise EmptyError if o.empty?
+        o.a(:error_class => EmptyError) { !empty? } 
       end
     end
 
@@ -87,7 +98,7 @@ module Letters
     # Nil check
     def n(opts={})
       tap do |o|
-        raise NilError if o.nil?
+        o.a(:error_class => NilError) { !nil? } 
       end
     end
 
