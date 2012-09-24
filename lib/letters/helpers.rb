@@ -30,6 +30,11 @@ module Letters
       object.awesome_inspect
     end
 
+    def self.json(object)
+      require "json"
+      object.to_json
+    end
+
     def self.pp(object)
       require "pp"
       object.pretty_inspect
