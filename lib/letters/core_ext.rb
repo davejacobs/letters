@@ -5,12 +5,13 @@ require "letters/nil_error"
 
 module Letters
   module CoreExt
-    DELIM = '-' * 20
+    DELIM = "-" * 20
 
     # Assert
     def a(opts={}, &block)
       opts = { error_class: AssertionError }.merge opts
       tap do |o|
+        Helpers.message opts
         if block_given? && !o.instance_eval(&block)
           raise opts[:error_class]
         end
@@ -20,7 +21,7 @@ module Letters
     # Beep
     def b(opts={})
       tap do
-        $stdout.puts opts[:message] if opts[:message]
+        Helpers.message opts
         $stdout.puts "\a"
       end
     end
@@ -28,16 +29,16 @@ module Letters
     # Callstack
     def c(opts={})
       tap do
-        $stdout.puts opts[:message] if opts[:message]
+        Helpers.message opts
         trace = caller.length > 2 ? caller.slice(2..-1) : []
-        $stdout.puts trace
+        Helpers.out trace
       end
     end
 
     # Debug
     def d(opts={})
       tap do
-        $stdout.puts opts[:message] if opts[:message]
+        Helpers.message opts
         Helpers.call_debugger 
       end
     end
@@ -53,15 +54,19 @@ module Letters
       opts = { format: "ap" }.merge opts
       tap do |o|
         diff = Helpers.diff(Letters.object_for_diff, o)
-        Helpers.out diff, :format => opts[:format]
+        Helpers.message opts
+        Helpers.out diff, opts
         Letters.object_for_diff = nil
       end
     end
     
     # Empty check
     def e(opts={})
+      # Override :error_class
+      opts.merge! :error_class => EmptyError
       tap do |o|
-        o.a(:error_class => EmptyError) { !empty? } 
+        Helpers.message opts
+        o.a(opts) { !empty? } 
       end
     end
 
@@ -70,7 +75,10 @@ module Letters
       opts = { name: "log", format: "yaml" }.merge opts
       tap do |o|
         File.open(opts[:name], "w+") do |file|
-          Helpers.out o, :stream => file, :format => opts[:format]
+          # Override :stream
+          opts.merge! :stream => file
+          Helpers.message opts
+          Helpers.out o, opts
         end
       end
     end
@@ -84,7 +92,7 @@ module Letters
 
     # Log
     def l(opts={})
-      opts = { level: :info, format: :yaml }.merge opts
+      opts = { level: "info", format: "yaml" }.merge opts
       tap do |o|
         begin
           logger.send(opts[:level], opts[:message]) if opts[:message]
@@ -104,18 +112,18 @@ module Letters
 
     # Print to STDOUT
     def p(opts={}, &block)
-      opts = { format: :ap, stream: $stdout }.merge opts
+      opts = { format: "ap", stream: $stdout }.merge opts
       tap do |o|
+        Helpers.message opts
         obj = block_given? ? o.instance_eval(&block) : o 
         Helpers.out obj, opts
       end
     end
 
     # RI
-    def r(method=nil, opts={})
+    def r(method=nil)
       require "rdoc/ri/driver"
       tap do |o|
-        $stdout.puts opts[:message] if opts[:message]
         method_or_empty = method ? "##{method}" : method
         system "ri #{o.class}#{method_or_empty}" 
       end

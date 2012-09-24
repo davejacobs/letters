@@ -83,6 +83,13 @@ module Letters
       end
     end
 
+    describe ".string" do
+      it "outputs the representation of the object returned by #to_s" do
+        complex_hash = { foo: "bar", baz: [1, 2, 3] }
+        Helpers.string(complex_hash).should == complex_hash.to_s
+      end
+    end
+
     describe ".xml" do
       it "outputs the XML representation of the object and then returns the object" do
         Helpers.xml(hash).should == "<opt></opt>\n"

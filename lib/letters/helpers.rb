@@ -20,8 +20,12 @@ module Letters
       raise "cannot diff the two marked objects" 
     end
 
+    def self.message(opts={})
+      out(opts[:message], opts) if opts[:message]
+    end
+
     def self.out(object, opts={})
-      opts = { stream: $stdout, format: :ap }.merge opts
+      opts = { stream: $stdout, format: "string" }.merge opts
       opts[:stream].puts Helpers.send(opts[:format], object)
     end
 
@@ -38,6 +42,10 @@ module Letters
     def self.pp(object)
       require "pp"
       object.pretty_inspect
+    end
+
+    def self.string(object)
+      object.to_s
     end
 
     def self.xml(object)

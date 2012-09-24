@@ -61,7 +61,7 @@ module Letters
 
     describe "#c (callstack)" do
       it "outputs the current call trace then returns the object" do
-        $stdout.should_receive(:puts).with kind_of Array
+        $stdout.should_receive(:puts).with kind_of String
         hash.c
       end
     end
