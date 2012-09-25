@@ -30,9 +30,7 @@ module Letters
     def c(opts={})
       tap do
         Helpers.message opts
-        callstack = caller.length > 2 ? caller.slice(2..-1) : []
-        pretty_callstack = Helpers.pretty_callstack(callstack)
-        Helpers.out pretty_callstack, opts
+        Helpers.out Helpers.pretty_callstack(caller 4), opts
       end
     end
 
@@ -64,7 +62,6 @@ module Letters
     
     # Empty check
     def e(opts={})
-      # Override :error_class
       opts.merge! :error_class => EmptyError
       tap do |o|
         Helpers.message opts
@@ -118,7 +115,6 @@ module Letters
 
     # Nil check
     def n(opts={})
-      # Override :error_class
       opts.merge! :error_class => NilError
       tap do |o|
         o.a(opts) { !nil? } 
