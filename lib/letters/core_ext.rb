@@ -22,7 +22,7 @@ module Letters
     # Beep
     def b
       tap do
-        $stdout.puts "\a"
+        $stdout.print "\a"
       end
     end
 
