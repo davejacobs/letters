@@ -30,8 +30,9 @@ module Letters
     def c(opts={})
       tap do
         Helpers.message opts
-        trace = caller.length > 2 ? caller.slice(2..-1) : []
-        Helpers.out trace, opts
+        callstack = caller.length > 2 ? caller.slice(2..-1) : []
+        pretty_callstack = Helpers.pretty_callstack(callstack)
+        Helpers.out pretty_callstack, opts
       end
     end
 

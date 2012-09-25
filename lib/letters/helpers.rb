@@ -1,3 +1,5 @@
+require "colorize"
+
 module Letters
   module Helpers
     def self.diff(obj1, obj2)
@@ -56,6 +58,42 @@ module Letters
     def self.yaml(object)
       require "yaml"
       object.to_yaml
+    end
+
+    def self.pretty_callstack(callstack)
+      home = ENV["MY_RUBY_HOME"]
+
+      parsed = callstack.map do |entry|
+        line, line_no, method_name = entry.split ":"
+
+        {
+          line: line.gsub(home + "/", "").green,
+          line_no: line_no.yellow,
+          method_name: method_name.scan(/`([^\']+)'/).first.first.light_blue
+        }
+      end
+
+      headers = {
+        line: "Line".green,
+        line_no: "No.".yellow,
+        method_name: "Method".light_blue
+      }
+
+      parsed.unshift headers
+
+      longest_line = 
+        parsed.map {|entry| entry[:line] }.
+          sort_by(&:length).
+          last
+
+      longest_method = 
+        parsed.map {|entry| entry[:method_name] }.
+          sort_by(&:length).
+          last
+
+      formatter = "%#{longest_method.length}{method_name} %-#{longest_line.length}{line} %{line_no}\n"
+
+      parsed.map {|h| formatter % h }.join
     end
 
     # This provides a mockable method for testing
