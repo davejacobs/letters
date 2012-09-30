@@ -30,7 +30,7 @@ module Letters
     def c(opts={})
       tap do
         Helpers.message opts
-        Helpers.out Helpers.pretty_callstack(caller 4), opts
+        Helpers.out caller(4), opts
       end
     end
 
