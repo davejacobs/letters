@@ -8,7 +8,6 @@ For many of us, troubleshooting begins and ends with the `print` statement. Othe
 
 If you're using RubyGems, install Letters with:
 
-    #!plain
     gem install letters
 
 By default, requiring `"letters"` monkey-patches `Object`. It goes without saying that if you're using Letters in an app that has environments, you probably only want to use it in development.
@@ -19,30 +18,33 @@ With Letters installed, you have a suite of methods available wherever you want 
 
 Let's start with the `p` method as an example. It is one of the most familiar methods. Calling it prints the receiver to STDOUT and returns the receiver:
 
-    #!ruby
-    { foo: "bar" }.p 
-    # => { foo: "bar" }
-    # prints { foo: "bar" }
+```ruby
+{ foo: "bar" }.p 
+# => { foo: "bar" }
+# prints { foo: "bar" }
+```
 
 That's simple enough, but not really useful. Things get interesting when you're in a pipeline:
 
-    #!ruby
-    words.grep(/interesting/).
-      map(&:downcase).
-      group_by(&:length).
-      values_at(5, 10)
-      slice(0..2).
-      join(", ")
-    
+```ruby
+words.grep(/interesting/).
+  map(&:downcase).
+  group_by(&:length).
+  values_at(5, 10)
+  slice(0..2).
+  join(", ")
+```   
+
 If I want to know the state of your code after lines 3 and 5, all I have to do is add `.p` to each one:
 
-    #!ruby
-    words.grep(/interesting/).
-      map(&:downcase).
-      group_by(&:length).p.
-      values_at(5, 10)
-      slice(0..2).p.
-      join(", ")
+```ruby
+words.grep(/interesting/).
+  map(&:downcase).
+  group_by(&:length).p.
+  values_at(5, 10)
+  slice(0..2).p.
+  join(", ")
+```
 
 Because the `p` method (and nearly every Letters method) returns the original object, introducing it is only ever for side effects -- it won't change the output of your code.
 
