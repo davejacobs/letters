@@ -16,7 +16,9 @@ By default, requiring `"letters"` monkey-patches `Object`. It goes without sayin
 
 With Letters installed, you have a suite of methods available wherever you want them in your code -- at the end of any expression, in the middle of any pipeline. Most of these methods will output some form of information, though there are more sophisticated ones that pass around control of the application.
 
-Let's start with the `p` method as an example. It is one of the most familiar methods. Calling it prints the receiver to STDOUT and returns the receiver:
+There are almost 20 Letters methods so far. You can find them [in the documentation](http://lettersrb.com/api).
+
+Let's use with the `p` method as an example. It is one of the most familiar methods. Calling it prints the receiver to STDOUT and returns the receiver:
 
 ```ruby
 { foo: "bar" }.p 
