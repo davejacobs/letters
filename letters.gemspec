@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version   = Letters::VERSION
   
   s.platform  = Gem::Platform::RUBY
-  s.homepage  = "http://github.com/davejacobs/letters"
+  s.homepage  = "http://lettersrb.com"
   s.author    = "David Jacobs"
   s.email     = "david@wit.io"
   s.summary   = "A tiny debugging library for Ruby"
