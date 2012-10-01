@@ -1,4 +1,4 @@
-require "letters/core"
+require "letters/patch/core"
 
 begin
   Letters.patch! ActiveRecord::Base
