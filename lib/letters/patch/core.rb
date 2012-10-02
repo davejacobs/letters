@@ -1,4 +1,5 @@
 require "letters/patch"
+require "set"
 
 Letters.patch! Numeric
 Letters.patch! Symbol

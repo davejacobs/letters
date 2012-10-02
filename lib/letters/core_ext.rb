@@ -1,4 +1,5 @@
 require "letters/helpers"
+require "letters/diff"
 require "letters/assertion_error"
 require "letters/empty_error"
 require "letters/nil_error"
