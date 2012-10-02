@@ -123,7 +123,7 @@ module Letters
     end
 
     # Print to STDOUT
-    def p(opts={}, &block)
+    def o(opts={}, &block)
       opts = { format: "ap", stream: $stdout }.merge opts
       tap do |o|
         Helpers.message opts

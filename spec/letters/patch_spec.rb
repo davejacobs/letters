@@ -11,13 +11,13 @@ module Letters
       Klass = Class.new
       Letters.patch! Klass
       k = Klass.new
-      k.p.should == k
+      k.o.should == k
     end
 
     it "adds Letters::CoreExt to objects" do
       obj = Object.new
       Letters.patch! obj
-      obj.p.should == obj
+      obj.o.should == obj
     end
   end
 end

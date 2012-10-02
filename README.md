@@ -18,10 +18,10 @@ With Letters installed, you have a suite of methods available wherever you want 
 
 There are almost 20 Letters methods so far. You can find them [in the documentation](http://lettersrb.com/api).
 
-Let's use with the `p` method as an example. It is one of the most familiar methods. Calling it prints the receiver to STDOUT and returns the receiver:
+Let's use with the `o` method as an example. It is one of the most familiar methods. Calling it prints the receiver to STDOUT and returns the receiver:
 
 ```ruby
-{ foo: "bar" }.p 
+{ foo: "bar" }.o 
 # => { foo: "bar" }
 # prints { foo: "bar" }
 ```
@@ -37,20 +37,20 @@ words.grep(/interesting/).
   join(", ")
 ```   
 
-If I want to know the state of your code after lines 3 and 5, all I have to do is add `.p` to each one:
+If I want to know the state of your code after lines 3 and 5, all I have to do is add `.o` to each one:
 
 ```ruby
 words.grep(/interesting/).
   map(&:downcase).
-  group_by(&:length).p.
+  group_by(&:length).o.
   values_at(5, 10).
-  slice(0..2).p.
+  slice(0..2).o.
   join(", ")
 ```
 
-Because the `p` method (and nearly every Letters method) returns the original object, introducing it is only ever for side effects -- it won't change the output of your code.
+Because the `o` method (and nearly every Letters method) returns the original object, introducing it is only ever for side effects -- it won't change the output of your code.
 
 This is significantly easier than breaking apart the pipeline using variable assignment or a hefty `tap` block.
 
-The `p` method takes options, too, so you can add a prefix message to the output or choose another output format -- like [YAML]() or [pretty print]().
+The `o` method takes options, too, so you can add a prefix message to the output or choose another output format -- like [YAML]() or [pretty print]().
 

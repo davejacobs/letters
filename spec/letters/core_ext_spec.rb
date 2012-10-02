@@ -32,7 +32,7 @@ module Letters
 
       # Methods that can take a block
       hash.j { nil }.should == hash
-      hash.p { nil }.should == hash
+      hash.o { nil }.should == hash
     end
 
     describe "#a (assert)" do
@@ -182,25 +182,25 @@ module Letters
       end
     end
 
-    describe "#p (print)" do
+    describe "#o (print)" do
       describe "when no format is given" do
         it "writes the object as awesome_print to STDOUT" do
           $stdout.should_receive(:puts).with(hash.awesome_inspect)
-          hash.p
+          hash.o
         end
       end
 
       describe "when a format is given" do
         it "writes the object as that format to STDOUT" do
           $stdout.should_receive(:puts).with(hash.to_yaml)
-          hash.p(:format => :yaml)
+          hash.o(:format => :yaml)
         end
       end
 
       describe "when a block is given" do
         it "write the result of the block, executed in the object's context" do
           $stdout.should_receive(:puts).with(hash.length.awesome_inspect)
-          hash.p { length }.should == hash
+          hash.o { length }.should == hash
         end
       end
     end
