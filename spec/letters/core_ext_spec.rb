@@ -120,6 +120,17 @@ module Letters
           File.read("log").chomp.should == hash.awesome_inspect
         end
       end
+
+      describe "when 'log' is a directory" do
+        before { FileUtils.mkdir "log" }
+        after { FileUtils.rm_rf "log" }
+
+        it "appends the first integer that de-dupes the name" do
+          File.exist?("log1").should be_false
+          lambda { hash.f }.should_not raise_error
+          File.exist?("log1").should be_true
+        end
+      end
     end
 
     describe "#j (jump)" do

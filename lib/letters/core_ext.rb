@@ -74,7 +74,10 @@ module Letters
     def f(opts={})
       opts = { format: "yaml", name: "log" }.merge opts
       tap do |o|
-        File.open(opts[:name], "w+") do |file|
+        suffixes = [""] + (1..50).to_a
+        deduper = suffixes.detect {|x| !File.directory? "#{opts[:name]}#{x}" }
+
+        File.open("#{opts[:name]}#{deduper}", "w+") do |file|
           # Override :stream
           opts.merge! :stream => file
           Helpers.message opts
