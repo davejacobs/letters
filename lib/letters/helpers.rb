@@ -98,8 +98,13 @@ module Letters
 
     # This provides a mockable method for testing
     def self.call_debugger
-      require "ruby-debug"
-      debugger
+      if (defined?(RUBY_ENGINE) && RUBY_ENGINE == 'rbx')
+        require 'rubinius/debugger'
+        Rubinius::Debugger.start
+      else
+        require 'debug'
+      end
+
       nil
     end
 

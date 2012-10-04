@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency "activesupport"
   s.add_dependency "xml-simple"
   s.add_dependency "colorize"
-  s.add_dependency "debugger"
 
   s.add_development_dependency "timecop"
   s.add_development_dependency "rspec"
