@@ -2,6 +2,7 @@ require "letters/helpers"
 require "letters/diff"
 require "letters/assertion_error"
 require "letters/empty_error"
+require "letters/kill_error"
 require "letters/nil_error"
 require "letters/time_formats"
 
@@ -90,6 +91,19 @@ module Letters
     def j(&block)
       tap do |o|
         o.instance_eval &block
+      end
+    end
+
+    # Kill
+    def k(opts={})
+      opts = { max: 0 }.merge(opts)
+      opts.merge! :error_class => KillError
+      tap do |o|
+        @letters_kill_count ||= 0
+        if @letters_kill_count >= opts[:max]
+          raise opts[:error_class]
+        end
+        @letters_kill_count += 1
       end
     end
 

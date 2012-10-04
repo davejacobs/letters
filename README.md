@@ -64,6 +64,7 @@ The `o` method takes options, too, so you can add a prefix message to the output
 - `e` (Empty)        raises a Letters::EmptyError if its receiver is empty
 - `f` (File)         writes its receiver into a file in a given format
 - `j` (Jump)         executes its block in the context of its receiver
+- `k` (Kill)         raises Letters::KillError after a maximum number of calls
 - `l` (Logger)       logs its receivers on the available logger instance
 - `m` (Taint)        taints (or untaints) its receiver
 - `n` (Nil)          raises a Letters::NilError if its receiver is nil
