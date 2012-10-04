@@ -54,3 +54,20 @@ This is significantly easier than breaking apart the pipeline using variable ass
 
 The `o` method takes options, too, so you can add a prefix message to the output or choose another output format -- like [YAML]() or [pretty print]().
 
+### Available letters
+
+- `a` (Assert)       asserts in the context of its receiver or Letters::AssertionError
+- `b` (Beep)         causes your terminal to beep
+- `c` (Callstack)    prints the current callstack
+- `d` (Debugger)     passes control to the debugger
+- `d1`/`d2` (Diff)   prints a diff between first and second receivers
+- `e` (Empty)        raises a Letters::EmptyError if its receiver is empty
+- `f` (File)         writes its receiver into a file in a given format
+- `j` (Jump)         executes its block in the context of its receiver
+- `l` (Logger)       logs its receivers on the available logger instance
+- `m` (Taint)        taints (or untaints) its receiver
+- `n` (Nil)          raises a Letters::NilError if its receiver is nil
+- `o` (stdOut)       prints its receiver to standard output
+- `r` (Ri)           prints RI documentation of its receiver class
+- `s` (Safety)       bumps the safety level (by one or as specified)
+- `t` (Timestamp)    prints out the current timestamp
