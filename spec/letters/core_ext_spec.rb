@@ -15,7 +15,7 @@ module Letters
       FileUtils.rm_rf "tmp"
     end
 
-    it "all letter methods but #e and #n return the original object" do
+    it "all letter methods but #e, #k and #n return the original object" do
       # Prevent output and debugging
       Helpers.should_receive(:call_debugger).any_number_of_times
       $stdout.should_receive(:puts).any_number_of_times
@@ -23,7 +23,7 @@ module Letters
       Helpers.should_receive(:change_safety).any_number_of_times
 
       ("a".."z").to_a.reject do |letter|
-        letter =~ /[ejn]/
+        letter =~ /[ekjn]/
       end.select do |letter|
         hash.respond_to? letter
       end.each do |letter|
@@ -143,6 +143,24 @@ module Letters
       it "allows for IO, even in object context" do
         $stdout.should_receive(:puts).with(0)
         hash.j { puts count }
+      end
+    end
+
+    describe "#k (kill)" do
+      it 'raises a KillError immediately by default' do
+        lambda { hash.k }.should raise_error(KillError)
+      end
+
+      it 'does not raises if number of calls are below max' do
+        lambda{ hash.k(max: 1) }.should_not raise_error
+      end
+
+      it 'raises a KillError if number of calls is above max' do
+        h, count = hash, 0
+        lambda{
+          10.times{ h.k(max: 5); count += 1; }
+        }.should raise_error(KillError)
+        count.should eq(5)
       end
     end
 
