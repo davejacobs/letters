@@ -18,6 +18,6 @@ end
 
 at_exit{
   require 'awesome_print'
-  ap "Letters were used at:", color: {:string => :red}
+  ap "Letters were used at:", color: {:string => :blue}
   ap Letters.uses.to_a
 }
