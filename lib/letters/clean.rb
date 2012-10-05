@@ -17,6 +17,7 @@ module Letters
 end
 
 at_exit{
+  require 'awesome_print'
   ap "Letters were used at:", color: {:string => :red}
   ap Letters.uses.to_a
 }
