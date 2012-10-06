@@ -54,7 +54,7 @@ This is significantly easier than breaking apart the pipeline using variable ass
 
 The `o` method takes options, too, so you can add a prefix message to the output or choose another output format -- like [YAML]() or [pretty print]().
 
-### Available letters
+### The methods ###
 
 <table>
   <tr>
