@@ -10,10 +10,12 @@ module Letters
   module CoreExt
     DELIM = "-" * 20
 
+    alias_method :letters_tap, :tap
+
     # Assert
     def a(opts={}, &block)
       opts = { error_class: AssertionError }.merge opts
-      tap do |o|
+      letters_tap do |o|
         Helpers.message opts
         if block_given? && !o.instance_eval(&block)
           raise opts[:error_class]
@@ -23,14 +25,14 @@ module Letters
 
     # Beep
     def b
-      tap do
+      letters_tap do
         $stdout.print "\a"
       end
     end
 
     # Callstack
     def c(opts={})
-      tap do
+      letters_tap do
         Helpers.message opts
         Helpers.out caller(4), opts
       end
@@ -38,14 +40,14 @@ module Letters
 
     # Debug
     def d
-      tap do
+      letters_tap do
         Helpers.call_debugger 
       end
     end
 
     # Diff 1
     def d1
-      tap do |o|
+      letters_tap do |o|
         Letters.object_for_diff = o
       end
     end
@@ -54,7 +56,7 @@ module Letters
     def d2(opts={})
       require "awesome_print"
       opts = { format: "ap" }.merge opts
-      tap do |o|
+      letters_tap do |o|
         diff = Helpers.diff(Letters.object_for_diff, o)
         Helpers.message opts
         Helpers.out diff, opts
@@ -65,7 +67,7 @@ module Letters
     # Empty check
     def e(opts={})
       opts.merge! :error_class => EmptyError
-      tap do |o|
+      letters_tap do |o|
         Helpers.message opts
         o.a(opts) { !empty? } 
       end
@@ -74,7 +76,7 @@ module Letters
     # File
     def f(opts={})
       opts = { format: "yaml", name: "log" }.merge opts
-      tap do |o|
+      letters_tap do |o|
         suffixes = [""] + (1..50).to_a
         deduper = suffixes.detect {|x| !File.directory? "#{opts[:name]}#{x}" }
 
@@ -89,7 +91,7 @@ module Letters
 
     # Jump
     def j(&block)
-      tap do |o|
+      letters_tap do |o|
         o.instance_eval &block
       end
     end
@@ -110,7 +112,7 @@ module Letters
     # Log
     def l(opts={})
       opts = { level: "info", format: "yaml" }.merge opts
-      tap do |o|
+      letters_tap do |o|
         begin
           logger.send(opts[:level], opts[:message]) if opts[:message]
           logger.send(opts[:level], Helpers.send(opts[:format], o))
@@ -122,7 +124,7 @@ module Letters
 
     # Taint and untaint object
     def m(taint=true)
-      tap do |o|
+      letters_tap do |o|
         if taint
           o.taint
         else
@@ -134,7 +136,7 @@ module Letters
     # Nil check
     def n(opts={})
       opts.merge! :error_class => NilError
-      tap do |o|
+      letters_tap do |o|
         o.a(opts) { !nil? } 
       end
     end
@@ -142,7 +144,7 @@ module Letters
     # Print to STDOUT
     def o(opts={}, &block)
       opts = { format: "ap", stream: $stdout }.merge opts
-      tap do |o|
+      letters_tap do |o|
         Helpers.message opts
         obj = block_given? ? o.instance_eval(&block) : o 
         Helpers.out obj, opts
@@ -151,7 +153,7 @@ module Letters
 
     # RI
     def r(method=nil)
-      tap do |o|
+      letters_tap do |o|
         method_or_empty = method ? "##{method}" : method
         system "ri #{o.class}#{method_or_empty}" 
       end
@@ -159,7 +161,7 @@ module Letters
 
     # Change safety level
     def s(level=nil)
-      tap do
+      letters_tap do
         level ||= $SAFE + 1
         Helpers.change_safety level
       end
@@ -168,7 +170,7 @@ module Letters
     # Timestamp
     def t(opts={})
       opts = { time_format: "millis" }.merge opts
-      tap do
+      letters_tap do
         Helpers.message opts
         Helpers.out Time.now.to_s(opts[:time_format].to_sym), opts
       end
