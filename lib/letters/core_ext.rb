@@ -173,5 +173,13 @@ module Letters
         Helpers.out Time.now.to_s(opts[:time_format].to_sym), opts
       end
     end
+    
+    def q()
+      quit
+    end
+    
+    def x(exception = StandardError)
+      raise exception
+    end
   end
 end
