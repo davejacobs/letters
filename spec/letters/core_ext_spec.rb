@@ -152,7 +152,7 @@ module Letters
       end
 
       it 'does not raises if number of calls are below max' do
-        lambda{ hash.k(max: 1) }.should_not raise_error
+        lambda { hash.k(max: 1) }.should_not raise_error
       end
 
       it 'raises a KillError if number of calls is above max' do
