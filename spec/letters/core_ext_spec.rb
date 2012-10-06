@@ -156,10 +156,13 @@ module Letters
       end
 
       it 'raises a KillError if number of calls is above max' do
-        h, count = hash, 0
-        lambda{
-          10.times{ h.k(max: 5); count += 1; }
-        }.should raise_error(KillError)
+        count = 0
+        lambda do
+          10.times do
+            hash.k(max: 5)
+            count += 1
+          end
+        end.should raise_error(KillError)
         count.should eq(5)
       end
     end
