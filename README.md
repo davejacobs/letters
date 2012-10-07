@@ -193,10 +193,10 @@ The `o` method takes options, too, so you can add a prefix message to the output
       Kill
     </td>
     <td>
-      :max
+      :on
     </td>
     <td>
-      raises Letters::KillError after a maximum number of calls
+      raises Letters::KillError at a specified number of calls
     </td>
   </tr>
 

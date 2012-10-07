@@ -1,6 +1,7 @@
 require "letters/config"
 require "letters/helpers"
 require "letters/diff"
+require "letters/kill"
 require "letters/time_formats"
 require "letters/empty_error"
 require "letters/kill_error"
@@ -96,13 +97,20 @@ module Letters
     # Kill
     def k(opts={})
       opts = Letters.defaults_with(:k, opts)
+
+      # Support :max option until I can deprecate it
+      opts[:on] ||= opts[:max]
+      
       opts.merge! :error_class => KillError
       tap do |o|
-        @letters_kill_count ||= 0
-        if @letters_kill_count >= opts[:max]
-          raise opts[:error_class]
+        Letters.kill_count ||= 0
+
+        if Letters.kill_count >= opts[:on]
+          Letters.kill_count = 0
+          o.a(opts) { false }
         end
-        @letters_kill_count += 1
+
+        Letters.kill_count += 1
       end
     end
 

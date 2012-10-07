@@ -147,23 +147,20 @@ module Letters
     end
 
     describe "#k (kill)" do
-      it 'raises a KillError immediately by default' do
+      it "raises a KillError immediately by default" do
         lambda { hash.k }.should raise_error(KillError)
       end
 
-      it 'does not raises if number of calls are below max' do
-        lambda { hash.k(max: 1) }.should_not raise_error
+      it "does not raises if number of calls are below the specified number" do
+        lambda { hash.k(:on => 1) }.should_not raise_error
       end
 
-      it 'raises a KillError if number of calls is above max' do
+      it "raises a KillError if number of calls has reached the specified number" do
         count = 0
+        hash.k(:on => 2)
         lambda do
-          10.times do
-            hash.k(max: 5)
-            count += 1
-          end
+          hash.k(:on => 2)
         end.should raise_error(KillError)
-        count.should eq(5)
       end
     end
 

@@ -7,7 +7,7 @@ module Letters
       d1: { dup: false },
       d2: { format: "ap" },
       f: { format: "yaml", name: "log" },
-      k: { max: 0 },
+      k: { on: 0 },
       l: { level: "info", format: "yaml" },
       o: { format: "ap", stream: $stdout },
       t: { time_format: "millis" }
