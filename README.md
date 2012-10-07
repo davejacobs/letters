@@ -307,4 +307,14 @@ The `o` method takes options, too, so you can add a prefix message to the output
   </tr>
 </table>
 
-See full documentation at http://lettersrb.com/api
+See the [full documentation](http://lettersrb.com/api) for examples and more detailed explanations.
+
+### Configuration ###
+
+Lastly, you can tune and tweak each Letters method to default to your own tastes. Want to name put files somewhere else? No problem. Don't like YAML? Default `f` to use Pretty Print instead! The world of defaults is your oyster.
+
+```ruby
+Letters.config do
+  f :format => "pp", :name => "my-special-file"
+end
+```

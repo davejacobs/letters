@@ -1,10 +1,10 @@
+require "letters/config"
 require "letters/helpers"
 require "letters/diff"
-require "letters/assertion_error"
+require "letters/time_formats"
 require "letters/empty_error"
 require "letters/kill_error"
 require "letters/nil_error"
-require "letters/time_formats"
 
 module Letters
   module CoreExt
@@ -12,7 +12,7 @@ module Letters
 
     # Assert
     def a(opts={}, &block)
-      opts = { error_class: AssertionError }.merge opts
+      opts = Letters.defaults_with(:a, opts)
       tap do |o|
         Helpers.message opts
         if block_given? && !o.instance_eval(&block)
@@ -52,8 +52,7 @@ module Letters
 
     # Diff 2
     def d2(opts={})
-      require "awesome_print"
-      opts = { format: "ap" }.merge opts
+      opts = Letters.defaults_with(:d2, opts)
       tap do |o|
         diff = Helpers.diff(Letters.object_for_diff, o)
         Helpers.message opts
@@ -73,7 +72,7 @@ module Letters
 
     # File
     def f(opts={})
-      opts = { format: "yaml", name: "log" }.merge opts
+      opts = Letters.defaults_with(:f, opts)
       tap do |o|
         suffixes = [""] + (1..50).to_a
         deduper = suffixes.detect {|x| !File.directory? "#{opts[:name]}#{x}" }
@@ -96,7 +95,7 @@ module Letters
 
     # Kill
     def k(opts={})
-      opts = { max: 0 }.merge(opts)
+      opts = Letters.defaults_with(:k, opts)
       opts.merge! :error_class => KillError
       tap do |o|
         @letters_kill_count ||= 0
@@ -109,7 +108,7 @@ module Letters
 
     # Log
     def l(opts={})
-      opts = { level: "info", format: "yaml" }.merge opts
+      opts = Letters.defaults_with(:l, opts)
       tap do |o|
         begin
           logger.send(opts[:level], opts[:message]) if opts[:message]
@@ -141,7 +140,7 @@ module Letters
 
     # Print to STDOUT
     def o(opts={}, &block)
-      opts = { format: "ap", stream: $stdout }.merge opts
+      opts = Letters.defaults_with(:o, opts)
       tap do |o|
         Helpers.message opts
         obj = block_given? ? o.instance_eval(&block) : o 
@@ -167,7 +166,7 @@ module Letters
 
     # Timestamp
     def t(opts={})
-      opts = { time_format: "millis" }.merge opts
+      opts = Letters.defaults_with(:t, opts)
       tap do
         Helpers.message opts
         Helpers.out Time.now.to_s(opts[:time_format].to_sym), opts
