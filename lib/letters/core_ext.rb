@@ -15,11 +15,14 @@ module Letters
 
     def ubertap(letter, opts={}, orig_caller=[], &block)
       full_opts = Letters.defaults_with(letter, opts)
-      Helpers.message full_opts
-      Helpers.print_line(orig_caller[0]) if full_opts[:line_no]
 
-      tap do |o|
-        block.call(o, full_opts)
+      unless full_opts[:disable]
+        Helpers.message full_opts
+        Helpers.print_line(orig_caller[0]) if full_opts[:line_no]
+
+        tap do |o|
+          block.call(o, full_opts)
+        end
       end
     end
 

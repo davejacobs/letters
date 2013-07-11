@@ -40,6 +40,16 @@ module Letters
         $stdout.should_receive(:puts).never
         hash.b
       end
+
+      it "allows disabling of all letters" do
+        Letters.config do
+          all :disable => true
+          b :line_no => true
+        end
+
+        $stdout.should_receive(:puts).never
+        hash.b
+      end
     end
 
     describe ".reset_config!" do

@@ -60,6 +60,7 @@ Here are the methods, listed with any options that can be passed in to modify th
 
 - `:message (string)`: Print out the specified message as the method is being called.
 - `:line_no (boolean)`: Print out the line number where a method is called as it is being called
+- `:disable (boolean)`: Disable this method's side effects
 
 You can easily set these for an entire project using global configuration if you wish (see below).
 
@@ -201,5 +202,13 @@ You can also change options globally, for methods where the global option is app
 ```ruby
 Letters.config do
   all :line_no => true
+end
+```
+
+To disable all Letters, for example if you're worried about them getting into a production environment:
+
+```ruby
+Letters.config do
+  all :disable => true
 end
 ```
