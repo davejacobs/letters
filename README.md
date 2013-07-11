@@ -200,7 +200,7 @@ You can easily set these for an entire project using global configuration if you
       <code>:on</code>
     </td>
     <td>
-      raises Letters::KillError at a specified number of calls
+      raises <code>Letters::KillError</code> at a specified number of calls
     </td>
   </tr>
 
