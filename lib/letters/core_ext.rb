@@ -7,8 +7,6 @@ require "letters/empty_error"
 require "letters/kill_error"
 require "letters/nil_error"
 
-require "colorize"
-
 module Letters
   module CoreExt
     DELIM = "-" * 20
