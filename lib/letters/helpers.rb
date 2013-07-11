@@ -99,12 +99,12 @@ module Letters
 
       parsed.unshift headers
 
-      longest_line = 
+      longest_line =
         parsed.map {|entry| entry[:line] }.
           sort_by(&:length).
           last
 
-      longest_method = 
+      longest_method =
         parsed.map {|entry| entry[:method_name] }.
           sort_by(&:length).
           last

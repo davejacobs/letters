@@ -49,7 +49,7 @@ module Letters
 
       it "raises a Letters::AssertionError if the block returns false" do
         lambda do
-          [1, 2, 3].a { count > 3 } 
+          [1, 2, 3].a { count > 3 }
         end.should raise_error(Letters::AssertionError)
       end
 
@@ -171,7 +171,7 @@ module Letters
 
     describe "#l (log)" do
       it "logs the object if a logger is present and then returns the object" do
-        logger = double 'logger'
+        logger = double "logger"
         logger.should_receive(:info).with(hash.to_yaml)
         hash.should_receive(:logger).and_return(logger)
         hash.l
