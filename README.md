@@ -55,6 +55,14 @@ This is significantly easier than breaking apart the pipeline using variable ass
 The `o` method takes options, too, so you can add a prefix message to the output or choose another output format -- like [YAML]() or [pretty print]().
 
 ### The methods ###
+
+Here are the methods, listed with any options that can be passed in to modify their behavior.  Some options are available to all methods and are not listed in the table below:
+
+- `:message (string)`: Print out the specified message as the method is being called.
+- `:line_no (boolean)`: Print out the line number where a method is called as it is being called
+
+You can easily set these for an entire project using global configuration if you wish (see below).
+
 <table>
   <tr>
     <th>Letter</th>
@@ -71,7 +79,6 @@ The `o` method takes options, too, so you can add a prefix message to the output
       Assert
     </td>
     <td>
-      :message,
       :error_class
     </td>
     <td>
@@ -101,7 +108,6 @@ The `o` method takes options, too, so you can add a prefix message to the output
       Callstack
     </td>
     <td>
-      :message
     </td>
     <td>
       prints the current callstack
@@ -131,7 +137,6 @@ The `o` method takes options, too, so you can add a prefix message to the output
       Diff
     </td>
     <td>
-      :message,
       :format,
       :stream
     </td>
@@ -148,7 +153,6 @@ The `o` method takes options, too, so you can add a prefix message to the output
       Empty
     </td>
     <td>
-      :message
     </td>
     <td>
       raises a Letters::EmptyError if its receiver is empty
@@ -308,15 +312,6 @@ The `o` method takes options, too, so you can add a prefix message to the output
 </table>
 
 See the [full documentation](http://lettersrb.com/api) for examples and more detailed explanations.
-
-### Options available to all methods ###
-
-Some options are available to all methods:
-
-- `message`: Print out the specified message as the method is being called.
-- `line_no`: Print out the line number where a method is called as it is being called
-
-You can easily set these for an entire project using global configuration if you wish (see below).
 
 ### Configuration ###
 
