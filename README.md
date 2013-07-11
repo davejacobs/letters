@@ -72,241 +72,115 @@ You can easily set these for an entire project using global configuration if you
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#a">a</a>
-    </td>
-    <td>
-      Assert
-    </td>
-    <td>
-      <code>:error_class</code>
-    </td>
-    <td>
-      asserts in the context of its receiver or <code>Letters::AssertionError</code>
-    </td>
+    <td><a href="http://lettersrb.com/api#a">a</a></td>
+    <td>Assert</td>
+    <td><code>:error_class</code></td>
+    <td>asserts in the context of its receiver or <code>Letters::AssertionError</code></td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#b">b</a>
-    </td>
-    <td>
-      Beep
-    </td>
-    <td>
-    </td>
-    <td>
-      causes your terminal to beep
-    </td>
+    <td><a href="http://lettersrb.com/api#b">b</a></td>
+    <td>Beep</td>
+    <td></td>
+    <td>causes your terminal to beep</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#c">c</a>
-    </td>
-    <td>
-      Callstack
-    </td>
-    <td>
-    </td>
-    <td>
-      prints the current callstack
-    </td>
+    <td><a href="http://lettersrb.com/api#c">c</a></td>
+    <td>Callstack</td>
+    <td></td>
+    <td>prints the current callstack</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#d">d</a>
-    </td>
-    <td>
-      Debugger
-    </td>
-    <td>
-
-    </td>
-    <td>
-      passes control to the debugger
-    </td>
+    <td><a href="http://lettersrb.com/api#d">d</a></td>
+    <td>Debugger</td>
+    <td></td>
+    <td>passes control to the debugger</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#d1/d2">d1/d2</a>
-    </td>
-    <td>
-      Diff
-    </td>
-    <td>
-      <code>:format</code>,
-      <code>:stream</code>
-    </td>
-    <td>
-      prints a diff between first and second receivers
-    </td>
+    <td><a href="http://lettersrb.com/api#d1/d2">d1/d2</a></td>
+    <td>Diff</td>
+    <td><code>:format</code>,<code>:stream</code></td>
+    <td>prints a diff between first and second receivers</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#e">e</a>
-    </td>
-    <td>
-      Empty
-    </td>
-    <td>
-    </td>
-    <td>
-      raises a <code>Letters::EmptyError</code> if its receiver is empty
-    </td>
+    <td><a href="http://lettersrb.com/api#e">e</a></td>
+    <td>Empty</td>
+    <td></td>
+    <td>raises a <code>Letters::EmptyError</code> if its receiver is empty</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#f">f</a>
-    </td>
-    <td>
-      File
-    </td>
-    <td>
-      <code>:format</code>, <code>:name</code>
-    </td>
-    <td>
-      writes its receiver into a file in a given format
-    </td>
+    <td><a href="http://lettersrb.com/api#f">f</a></td>
+    <td>File</td>
+    <td><code>:format</code>, <code>:name</code></td>
+    <td>writes its receiver into a file in a given format</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#j">j</a>
-    </td>
-    <td>
-      Jump
-    </td>
-    <td>
-      (<code>&block</code>)
-    </td>
-    <td>
-      executes its block in the context of its receiver
-    </td>
+    <td><a href="http://lettersrb.com/api#j">j</a></td>
+    <td>Jump</td>
+    <td>(<code>&block</code>)</td>
+    <td>executes its block in the context of its receiver</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#k">k</a>
-    </td>
-    <td>
-      Kill
-    </td>
-    <td>
-      <code>:on</code>
-    </td>
-    <td>
-      raises <code>Letters::KillError</code> at a specified number of calls
-    </td>
+    <td><a href="http://lettersrb.com/api#k">k</a></td>
+    <td>Kill</td>
+    <td><code>:on</code></td>
+    <td>raises <code>Letters::KillError</code> at a specified number of calls</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#l">l</a>
-    </td>
-    <td>
-      Logger
-    </td>
-    <td>
-      <code>:format</code>, <code>:level</code>
-    </td>
-    <td>
-      logs its receivers on the available logger instance
-    </td>
+    <td><a href="http://lettersrb.com/api#l">l</a></td>
+    <td>Logger</td>
+    <td><code>:format</code>, <code>:level</code></td>
+    <td>logs its receivers on the available logger instance</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#m">m</a>
-    </td>
-    <td>
-      Mark as tainted
-    </td>
-    <td>
-      (<code>true</code>|<code>false</code>)
-    </td>
-    <td>
-      taints (or untaints) its receiver
-    </td>
+    <td><a href="http://lettersrb.com/api#m">m</a></td>
+    <td>Mark as tainted</td>
+    <td>(<code>true</code>|<code>false</code>)</td>
+    <td>taints (or untaints) its receiver</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#n">n</a>
-    </td>
-    <td>
-      Nil
-    </td>
-    <td>
-
-    </td>
-    <td>
-      raises a <code>Letters::NilError</code> if its receiver is nil
-    </td>
+    <td><a href="http://lettersrb.com/api#n">n</a></td>
+    <td>Nil</td>
+    <td></td>
+    <td>raises a <code>Letters::NilError</code> if its receiver is nil</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#o">o</a>
-    </td>
-    <td>
-      Output
-    </td>
-    <td>
-      <code>:format</code>, <code>:stream</code>
-    </td>
-    <td>
-      prints its receiver to standard output
-    </td>
+    <td><a href="http://lettersrb.com/api#o">o</a></td>
+    <td>Output</td>
+    <td><code>:format</code>, <code>:stream</code></td>
+    <td>prints its receiver to standard output</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#r">r</a>
-    </td>
-    <td>
-      Ri
-    </td>
-    <td>
-      (method name as symbol)
-    </td>
-    <td>
-      prints RI documentation of its receiver class
-    </td>
+    <td><a href="http://lettersrb.com/api#r">r</a></td>
+    <td>Ri</td>
+    <td>(method name as symbol)</td>
+    <td>prints RI documentation of its receiver class</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#s">s</a>
-    </td>
-    <td>
-      Safety
-    </td>
-    <td>
-      (level number)
-    </td>
-    <td>
-      bumps the safety level (by one or as specified)
-    </td>
+    <td><a href="http://lettersrb.com/api#s">s</a></td>
+    <td>Safety</td>
+    <td>(level number)</td>
+    <td>bumps the safety level (by one or as specified)</td>
   </tr>
 
   <tr>
-    <td>
-      <a href="http://lettersrb.com/api#t">t</a>
-    </td>
-    <td>
-      Timestamp
-    </td>
-    <td>
-      <code>:time_format</code>
-    </td>
-    <td>
-      prints out the current timestamp
-    </td>
+    <td><a href="http://lettersrb.com/api#t">t</a></td>
+    <td>Timestamp</td>
+    <td><code>:time_format</code></td>
+    <td>prints out the current timestamp</td>
   </tr>
 </table>
 
