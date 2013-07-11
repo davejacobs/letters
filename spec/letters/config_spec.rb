@@ -12,13 +12,33 @@ module Letters
     end
 
     after do
-      FileUtils.rm "log"
+      Letters.reset_config!
+      FileUtils.rm_rf "log"
     end
 
     describe ".config" do
       it "allows default argument configuration" do
         hash.f
         File.read("log").should == hash.pretty_inspect
+      end
+
+      it "allows global default argument configuration" do
+        Letters.config do
+          all :line_no => true
+        end
+
+        $stdout.should_receive(:puts).exactly(4).times
+        hash.b
+      end
+
+      it "allows specific defaults to override global defaults" do
+        Letters.config do
+          all :line_no => true
+          b :line_no => false
+        end
+
+        $stdout.should_receive(:puts).never
+        hash.b
       end
     end
 
