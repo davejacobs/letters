@@ -1,6 +1,6 @@
 **Letters** is a little alphabetical library that makes sophisticated debugging easy &amp; fun.
 
-*Quick note about Rails*: Until I build a Rails-specific gem, I'm changing Letters to patch `Object` by default. To only patch core classes, `require "letters/patch/core"`. For Rails support, `require "letters/patch/rails"`. Make sure to do this after `Bundler.require` in `application.rb`. 
+*Quick note about Rails*: Until I build a Rails-specific gem, I'm changing Letters to patch `Object` by default. To only patch core classes, `require "letters/patch/core"`. For Rails support, `require "letters/patch/rails"`. Make sure to do this after `Bundler.require` in `application.rb`.
 
 For many of us, troubleshooting begins and ends with the `print` statement. Others recruit the debugger, too. (Maybe you use `print` statements to look at changes over time but the debugger to focus on a small bit of code.) These tools are good, but they are the lowest level of how we can debug in Ruby. Letters leverages `print`, the debugger, control transfer, computer beeps, and other side-effects for more well-rounded visibility into code and state.
 
@@ -21,7 +21,7 @@ There are almost 20 Letters methods so far. You can find them [in the documentat
 Let's use with the `o` method as an example. It is one of the most familiar methods. Calling it prints the receiver to STDOUT and returns the receiver:
 
 ```ruby
-{ foo: "bar" }.o 
+{ foo: "bar" }.o
 # => { foo: "bar" }
 # prints { foo: "bar" }
 ```
@@ -35,7 +35,7 @@ words.grep(/interesting/).
   values_at(5, 10).
   slice(0..2).
   join(", ")
-```   
+```
 
 If I want to know the state of your code after lines 3 and 5, all I have to do is add `.o` to each one:
 
@@ -71,7 +71,7 @@ The `o` method takes options, too, so you can add a prefix message to the output
       Assert
     </td>
     <td>
-      :message, 
+      :message,
       :error_class
     </td>
     <td>
@@ -101,7 +101,7 @@ The `o` method takes options, too, so you can add a prefix message to the output
       Callstack
     </td>
     <td>
-      :message 
+      :message
     </td>
     <td>
       prints the current callstack
@@ -116,7 +116,7 @@ The `o` method takes options, too, so you can add a prefix message to the output
       Debugger
     </td>
     <td>
-      
+
     </td>
     <td>
       passes control to the debugger
@@ -238,7 +238,7 @@ The `o` method takes options, too, so you can add a prefix message to the output
       Nil
     </td>
     <td>
-      
+
     </td>
     <td>
       raises a Letters::NilError if its receiver is nil
@@ -309,6 +309,15 @@ The `o` method takes options, too, so you can add a prefix message to the output
 
 See the [full documentation](http://lettersrb.com/api) for examples and more detailed explanations.
 
+### Options available to all methods ###
+
+Some options are available to all methods:
+
+- `message`: Print out the specified message as the method is being called.
+- `line_no`: Print out the line number where a method is called as it is being called
+
+You can easily set these for an entire project using global configuration if you wish (see below).
+
 ### Configuration ###
 
 For maximum productivity, you can tune and tweak each Letters method to fit your own tastes. Want to name put files somewhere else? No problem. Don't like YAML? Default `f` to use Pretty Print instead! The world of defaults is your oyster.
@@ -316,5 +325,13 @@ For maximum productivity, you can tune and tweak each Letters method to fit your
 ```ruby
 Letters.config do
   f :format => "pp", :name => "my-special-file"
+end
+```
+
+You can also change options globally, for methods where the global option is appropriate. For example, if you want every Letters method to print out its line number when called, you can do this for all methods at once:
+
+```ruby
+Letters.config do
+  all :line_no => true
 end
 ```
