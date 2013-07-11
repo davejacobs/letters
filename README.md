@@ -79,10 +79,10 @@ You can easily set these for an entire project using global configuration if you
       Assert
     </td>
     <td>
-      :error_class
+      <code>:error_class</code>
     </td>
     <td>
-      asserts in the context of its receiver or Letters::AssertionError
+      asserts in the context of its receiver or <code>Letters::AssertionError</code>
     </td>
   </tr>
 
@@ -137,8 +137,8 @@ You can easily set these for an entire project using global configuration if you
       Diff
     </td>
     <td>
-      :format,
-      :stream
+      <code>:format</code>,
+      <code>:stream</code>
     </td>
     <td>
       prints a diff between first and second receivers
@@ -155,7 +155,7 @@ You can easily set these for an entire project using global configuration if you
     <td>
     </td>
     <td>
-      raises a Letters::EmptyError if its receiver is empty
+      raises a <code>Letters::EmptyError</code> if its receiver is empty
     </td>
   </tr>
 
@@ -167,7 +167,7 @@ You can easily set these for an entire project using global configuration if you
       File
     </td>
     <td>
-      :format, :name
+      <code>:format</code>, <code>:name</code>
     </td>
     <td>
       writes its receiver into a file in a given format
@@ -182,7 +182,7 @@ You can easily set these for an entire project using global configuration if you
       Jump
     </td>
     <td>
-      (&block)
+      (<code>&block</code>)
     </td>
     <td>
       executes its block in the context of its receiver
@@ -197,7 +197,7 @@ You can easily set these for an entire project using global configuration if you
       Kill
     </td>
     <td>
-      :on
+      <code>:on</code>
     </td>
     <td>
       raises Letters::KillError at a specified number of calls
@@ -212,7 +212,7 @@ You can easily set these for an entire project using global configuration if you
       Logger
     </td>
     <td>
-      :format, :level
+      <code>:format</code>, <code>:level</code>
     </td>
     <td>
       logs its receivers on the available logger instance
@@ -227,7 +227,7 @@ You can easily set these for an entire project using global configuration if you
       Mark as tainted
     </td>
     <td>
-      (true|false)
+      (<code>true</code>|<code>false</code>)
     </td>
     <td>
       taints (or untaints) its receiver
@@ -245,7 +245,7 @@ You can easily set these for an entire project using global configuration if you
 
     </td>
     <td>
-      raises a Letters::NilError if its receiver is nil
+      raises a <code>Letters::NilError</code> if its receiver is nil
     </td>
   </tr>
 
@@ -257,8 +257,7 @@ You can easily set these for an entire project using global configuration if you
       Output
     </td>
     <td>
-      :format,
-      :stream
+      <code>:format</code>, <code>:stream</code>
     </td>
     <td>
       prints its receiver to standard output
@@ -303,7 +302,7 @@ You can easily set these for an entire project using global configuration if you
       Timestamp
     </td>
     <td>
-      :time_format
+      <code>:time_format</code>
     </td>
     <td>
       prints out the current timestamp
