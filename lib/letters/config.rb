@@ -31,8 +31,7 @@ module Letters
   end
 
   def self.defaults_with(letter, opts={})
-    # TODO: This is obviously a reduce, so change it to that
-    global_defaults.merge(defaults[letter]).merge(user_defaults[letter]).merge(opts)
+    [global_defaults, defaults[letter], user_defaults[letter], opts].reduce({}, &:merge)
   end
 
   def self.reset_config!
