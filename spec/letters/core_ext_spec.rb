@@ -35,6 +35,11 @@ module Letters
       hash.o { nil }.should == hash
     end
 
+    it "all letter methods have the option of outputting the line where they are called" do
+      pending "I need to figure out a good way to test this"
+      # hash.j(:line_no => true) { nil }.should == hash
+    end
+
     describe "#a (assert)" do
       it "jumps into the receiver's calling context" do
         lambda do

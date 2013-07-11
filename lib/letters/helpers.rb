@@ -1,4 +1,5 @@
 require "colorize"
+require "pathname"
 
 module Letters
   module Helpers
@@ -13,13 +14,13 @@ module Letters
       when String
         diff(obj1.split("\n"), obj2.split("\n"))
       else
-        { 
+        {
           removed: Array(obj1 - obj2),
           added: Array(obj2 - obj1)
         }
       end
     rescue
-      raise "cannot diff the two marked objects" 
+      raise "cannot diff the two marked objects"
     end
 
     def self.message(opts={})
@@ -58,6 +59,23 @@ module Letters
     def self.yaml(object)
       require "yaml"
       object.to_yaml
+    end
+
+    def self.print_line(caller_line)
+      file, line_no = caller_line.split.first.sub(/:in$/, "").split(":")
+
+      line = if File.exist?(file) && File.file?(file)
+               File.readlines(file)[Integer(line_no) - 1]
+             else
+               ""
+             end
+
+      rel_file = Pathname.new(file).expand_path.relative_path_from(Pathname.getwd)
+
+      puts "Letters call at #{file}, line #{line_no}".underline
+      puts
+      puts "  " + line.strip.chomp.sub(/^\W*/, "").green
+      puts
     end
 
     def self.pretty_callstack(callstack)
