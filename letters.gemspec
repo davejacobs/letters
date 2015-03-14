@@ -24,11 +24,11 @@ Gem::Specification.new do |s|
 
   s.require_path = "lib"
 
-  s.add_dependency "awesome_print"
   s.add_dependency "activesupport"
-  s.add_dependency "xml-simple"
+  s.add_dependency "awesome_print"
   s.add_dependency "colorize"
+  s.add_dependency "xml-simple"
 
-  s.add_development_dependency "timecop"
   s.add_development_dependency "rspec"
+  s.add_development_dependency "timecop"
 end
