@@ -2,7 +2,7 @@
 
 *Quick note about Rails*: Until I build a Rails-specific gem, I'm changing Letters to patch `Object` by default. To only patch core classes, `require "letters/patch/core"`. For Rails support, `require "letters/patch/rails"`. Make sure to do this after `Bundler.require` in `application.rb`.
 
-For many of us, troubleshooting begins and ends with the `print` statement. Others recruit the debugger, too. (Maybe you use `print` statements to look at changes over time but the debugger to focus on a small bit of code.) These tools are good, but they are the lowest level of how we can debug in Ruby. Letters leverages `print`, the debugger, control transfer, computer beeps, and other side-effects for more well-rounded visibility into code and state.
+For many of us, troubleshooting begins and ends with the `puts` statement. Others recruit the debugger, too. (Maybe you use `puts` statements to look at changes over time but the debugger to focus on a small bit of code.) These tools are good, but they are the lowest level of how we can debug in Ruby. Letters leverages `puts`, the debugger, control transfer, computer beeps, and other side-effects for more well-rounded visibility into code and state.
 
 ### Installation ###
 
