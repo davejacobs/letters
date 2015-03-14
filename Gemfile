@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
-gem "awesome_print"
 gem "activesupport"
-gem "xml-simple"
-gem "timecop"
+gem "awesome_print"
 gem "colorize"
+gem "timecop"
+gem "xml-simple"
