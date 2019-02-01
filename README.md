@@ -1,10 +1,8 @@
 **Letters** is a little alphabetical library that makes sophisticated debugging easy &amp; fun.
 
-*Quick note about Rails*: Until I build a Rails-specific gem, I'm changing Letters to patch `Object` by default. To only patch core classes, `require "letters/patch/core"`. For Rails support, `require "letters/patch/rails"`. Make sure to do this after `Bundler.require` in `application.rb`.
-
 For many of us, troubleshooting begins and ends with the `puts` statement. Others recruit the debugger, too. (Maybe you use `puts` statements to look at changes over time but the debugger to focus on a small bit of code.) These tools are good, but they are the lowest level of how we can debug in Ruby. Letters leverages `puts`, the debugger, control transfer, computer beeps, and other side-effects for more well-rounded visibility into code and state.
 
-### Installation ###
+## Installation ##
 
 If you're using RubyGems, install Letters with:
 
@@ -12,7 +10,7 @@ If you're using RubyGems, install Letters with:
 
 By default, requiring `"letters"` monkey-patches `Object`. It goes without saying that if you're using Letters in an app that has environments, you probably only want to use it in development.
 
-### Debugging with letters ###
+## Debugging with letters ##
 
 With Letters installed, you have a suite of methods available wherever you want them in your code -- at the end of any expression, in the middle of any pipeline. Most of these methods will output some form of information, though there are more sophisticated ones that pass around control of the application.
 
@@ -54,7 +52,7 @@ This is significantly easier than breaking apart the pipeline using variable ass
 
 The `o` method takes options, too, so you can add a prefix message to the output or choose another output format -- like [YAML]() or [pretty print]().
 
-### The methods ###
+## The methods ##
 
 Here are the methods, listed with any options that can be passed in to modify their behavior.  Some options are available to all methods and are not listed in the table below:
 
@@ -187,7 +185,7 @@ You can easily set these for an entire project using global configuration if you
 
 See the [full documentation](http://lettersrb.com/api) for examples and more detailed explanations.
 
-### Configuration ###
+## Configuration ##
 
 For maximum productivity, you can tune and tweak each Letters method to fit your own tastes. Want to name put files somewhere else? No problem. Don't like YAML? Default `f` to use Pretty Print instead! The world of defaults is your oyster.
 
